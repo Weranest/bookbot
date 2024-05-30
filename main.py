@@ -1,3 +1,7 @@
+def get_text(file_path):
+    with open(file_path) as f:
+        return f.read()
+
 def word_count(text):
    words = text.split()
    return len(words)
@@ -14,11 +18,10 @@ def letter_count(text):
     return letters
 
 def main():
-    with open("books/frankenstein.txt") as f:
-        file_contents = f.read()
-    print(word_count(file_contents))
-    print(letter_count(file_contents))
-
+    file_path = "books/frankenstein.txt"
+    text = get_text(file_path)
+    print (f"Wordcount for the selected book: {word_count(text)} words")
+    print(f"Letter distribution for selected book: {letter_count(text)}")
 
 main()
 
