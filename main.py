@@ -23,22 +23,24 @@ def dict_to_list(dict):
         temp_dict = {"character":"", "number":0}
         temp_dict["character"] = key
         temp_dict["number"] = dict[key]
-        print(temp_dict)
         dict_list.append(temp_dict)
-    print(dict_list)
     return dict_list
 
 def sort_crit(dict_list):
     return dict_list["number"]
 
 def main():
+    print("Starting analysis...")
     file_path = "books/frankenstein.txt"
+    print(f"Getting data from {file_path}")
     text = get_text(file_path)
     letters = letter_count(text)
+    print(f"There are {word_count(text)} words in the document")
     prepped_letters = dict_to_list(letters)
-    print (f"Wordcount for the selected book: {word_count(text)} words")
-    print(f"Letter distribution for selected book: {prepped_letters.sort(reverse=True, key=sort_crit)}")
-
+    prepped_letters.sort(reverse=True, key=sort_crit)
+    for item in prepped_letters:
+        if item["character"].isalpha():
+            print(f"The '{item["character"]}' character was found {item["number"]} times")
 main()
 
 
